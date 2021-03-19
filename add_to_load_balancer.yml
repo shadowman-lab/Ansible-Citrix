@@ -55,7 +55,6 @@
       servicetype: SSL
       port: 443
       ipv46: 172.16.3.123
-      ssl_certkey: ns-server-certificate
       servicegroupbindings:
         - servicegroupname: service-group-https
     delegate_to: localhost
