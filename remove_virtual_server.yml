@@ -1,0 +1,38 @@
+---
+- name: Remove virtual server from Citrix Load Balancer
+  hosts: localhost
+  gather_facts: false
+
+  vars:
+    virtual_server_fqdn: citrixlb.shadowman.dev
+
+  tasks:
+
+  - name: Delete Virtual Server
+    citrix.adc.citrix_adc_lb_vserver:
+      nsip: "{{ nsip }}"
+      nitro_user: "{{ nitro_user }}"
+      nitro_pass: "{{ nitro_pass }}"
+      name: lb-vserver-https
+      state: absent
+    notify: IDM_update
+
+  - name: Delete Servicegroup
+    citrix.adc.citrix_adc_servicegroup:
+      nsip: "{{ nsip }}"
+      nitro_user: "{{ nitro_user }}"
+      nitro_pass: "{{ nitro_pass }}"
+      servicegroupname: service-group-https
+      state: absent
+      delegate_to: localhost
+
+  handlers:
+    - name: IDM_update      
+      ipa_host:
+        name: "{{ virtual_server_fqdn }}"
+        state: absent
+        ipa_pass: "{{ IPA_PASS }}"
+        ipa_host: "{{ IPA_HOST }}"
+        ipa_user: "{{ IPA_USER }}"
+        update_dns: True
+      no_log: true
