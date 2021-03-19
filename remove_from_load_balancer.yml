@@ -12,6 +12,7 @@
       nitro_pass: "{{ nitro_pass }}"
       servicegroupname: service-group-https
       maxclient: "4000"
+      servicetype: SSL
       servicemembers:
         mode: unbind
         attributes: 
