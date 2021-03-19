@@ -18,6 +18,5 @@
         attributes: 
           - servername: "{{ inventory_hostname }}"
             port: 443
-            ip: "{{ ip_addr }}"
             weight: "50"
     delegate_to: localhost
