@@ -37,22 +37,7 @@
           - monitor_name: https
             weight: "50"
     delegate_to: localhost
-
-  ##- name: Setup ssl certificate key
-  ##  citrix.adc.citrix_adc_ssl_certkey:
-  ##    nsip: "{{ nsip }}"
-  ##    nitro_user: "{{ nitro_user }}"
-  ##    nitro_pass: "{{ nitro_pass }}"
-  ##    certkey: ns-server-certificate
-  ##    cert: shadowman_combined.cert
-  ##    key: shadowman_private.key
-  ##    expirymonitor: enabled
-  ##    notificationperiod: 30
-  ##    inform: PEM
-  ##    password: False
-  ##    passplain: "{{ nitro_pass }}"
-  ##  delegate_to: localhost
-
+    
   - name: Setup lb server
     citrix.adc.citrix_adc_lb_vserver:
       nsip: "{{ nsip }}"
