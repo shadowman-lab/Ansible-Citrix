@@ -1,0 +1,17 @@
+---
+- name: Disable hosts on Citrix
+  hosts: "{{ vm_name | default('all') }}"
+  gather_facts: false
+
+  
+  tasks:
+  
+  - name: Disable Server from LB
+    citrix.adc.citrix_adc_server:
+      nsip: "{{ nsip }}"
+      nitro_user: "{{ nitro_user }}"
+      nitro_pass: "{{ nitro_pass }}"
+      disabled: yes
+      ipaddress: "{{ ip_addr }}"
+      name: "{{ inventory_hostname }}"
+    delegate_to: localhost
