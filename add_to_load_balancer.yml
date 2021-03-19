@@ -61,10 +61,11 @@
       name: lb-vserver-https
       servicetype: TCP
       port: 443
-      ipv46: 172.16.3.123
+      ipv46: 172.16.0.123
       servicegroupbindings:
         - servicegroupname: service-group-https
     delegate_to: localhost
+    notify: IDM_update
 
   - name: Set stats for the e-mail body and ServiceNow
     set_stats:
@@ -73,3 +74,17 @@
         work_notes: "{{ work_notes }} [code]<a href='https://citrixlb.shadowman.dev'>Load Balancer</a>[/code]"
     run_once: true      
     when: email_body is defined
+
+  handlers:
+    - name: IDM_update      
+      ipa_host:
+        name: citrixlb.shadowman.dev
+        ip_address: 172.16.3.123
+        ipa_pass: "{{ IPA_PASS }}"
+        ipa_host: "{{ IPA_HOST }}"
+        ipa_user: "{{ IPA_USER }}"
+        state: present
+        force: yes
+      delegate_to: localhost
+      no_log: true
+      become: no
