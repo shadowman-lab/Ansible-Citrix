@@ -24,7 +24,6 @@
       nitro_pass: "{{ nitro_pass }}"
       servicegroupname: service-group-https
       state: absent
-      delegate_to: localhost
 
   handlers:
     - name: IDM_update      
