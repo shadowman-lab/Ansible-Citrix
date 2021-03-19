@@ -4,6 +4,16 @@
   gather_facts: false
   
   tasks:
+
+  - name: Setup server
+    citrix.adc.citrix_adc_server:
+      nsip: "{{ nsip }}"
+      nitro_user: "{{ nitro_user }}"
+      nitro_pass: "{{ nitro_pass }}"
+      state: present
+      name: "{{ inventory_hostname }}"
+      ipaddress: "{{ ip_addr }}"
+    delegate_to: localhost
   
   - name: Setup service group and add host
     citrix.adc.citrix_adc_servicegroup:
