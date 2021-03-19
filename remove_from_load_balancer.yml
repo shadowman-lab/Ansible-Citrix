@@ -11,12 +11,12 @@
       nitro_user: "{{ nitro_user }}"
       nitro_pass: "{{ nitro_pass }}"
       servicegroupname: service-group-https
-      maxclient: 4000
+      maxclient: "4000"
       servicemembers:
         mode: unbind
         attributes: 
           - servername: "{{ inventory_hostname }}"
             port: 443
             ip: "{{ ip_addr }}"
-            weight: 50
+            weight: "50"
     delegate_to: localhost
