@@ -63,7 +63,7 @@
 
   handlers:
     - name: IDM_update      
-      ipa_host:
+      community.general.ipa_host:
         name: citrixlb.shadowman.dev
         ip_address: 172.16.0.123
         ipa_pass: "{{ IPA_PASS }}"
