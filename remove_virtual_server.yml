@@ -15,6 +15,7 @@
       nitro_pass: "{{ nitro_pass }}"
       name: lb-vserver-https
       state: absent
+      validate_certs: no
     notify: IDM_update
 
   - name: Delete Servicegroup
@@ -24,6 +25,7 @@
       nitro_pass: "{{ nitro_pass }}"
       servicegroupname: service-group-https
       state: absent
+      validate_certs: no
 
   handlers:
     - name: IDM_update      

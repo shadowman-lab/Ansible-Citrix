@@ -15,4 +15,5 @@
       disabled: yes
       ipaddress: "{{ ip_addr }}"
       name: "{{ inventory_hostname }}"
+      validate_certs: no
     delegate_to: localhost

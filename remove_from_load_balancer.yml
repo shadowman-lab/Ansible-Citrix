@@ -14,6 +14,7 @@
       servicegroupname: service-group-https
       maxclient: "4000"
       servicetype: TCP
+      validate_certs: no
       servicemembers:
         mode: unbind
         attributes: 
@@ -30,4 +31,5 @@
       state: absent
       name: "{{ inventory_hostname }}"
       ipaddress: "{{ ip_addr }}"
+      validate_certs: no
     delegate_to: localhost
