@@ -1,3 +1,4 @@
+---
 - name: Disable Server from LB
   citrix.adc.citrix_adc_server:
     nsip: "{{ nsip }}"

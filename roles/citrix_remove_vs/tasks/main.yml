@@ -1,3 +1,4 @@
+---
 - name: Delete Virtual Server
   citrix.adc.citrix_adc_lb_vserver:
     nsip: "{{ nsip }}"

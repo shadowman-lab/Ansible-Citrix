@@ -1,3 +1,4 @@
+---
 - name: Remove host from load balancer service group
   citrix.adc.citrix_adc_servicegroup:
     nsip: "{{ nsip }}"
