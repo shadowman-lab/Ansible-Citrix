@@ -1,0 +1,57 @@
+- name: Setup server
+  citrix.adc.citrix_adc_server:
+    nsip: "{{ nsip }}"
+    nitro_user: "{{ nitro_user }}"
+    nitro_pass: "{{ nitro_pass }}"
+    state: present
+    name: "{{ inventory_hostname }}"
+    ipaddress: "{{ ip_addr }}"
+    validate_certs: no
+  delegate_to: localhost
+
+- name: Setup service group and add host
+  citrix.adc.citrix_adc_servicegroup:
+    nsip: "{{ nsip }}"
+    nitro_user: "{{ nitro_user }}"
+    nitro_pass: "{{ nitro_pass }}"
+    servicegroupname: service-group-https
+    maxclient: "4000"
+    servicetype: TCP
+    validate_certs: no
+    servicemembers:
+      mode: bind
+      attributes: 
+        - servername: "{{ inventory_hostname }}"
+          port: 443
+          weight: "50"
+    monitor_bindings:
+      mode: exact
+      attributes:
+        - monitor_name: ping
+          weight: "50"
+        - monitor_name: https
+          weight: "50"
+  delegate_to: localhost
+  
+- name: Setup lb server
+  citrix.adc.citrix_adc_lb_vserver:
+    nsip: "{{ nsip }}"
+    nitro_user: "{{ nitro_user }}"
+    nitro_pass: "{{ nitro_pass }}"
+    name: lb-vserver-https
+    servicetype: TCP
+    port: 443
+    ipv46: 172.16.0.123
+    servicegroupbindings:
+      - servicegroupname: service-group-https
+    validate_certs: no
+  delegate_to: localhost
+  notify: IDM_update
+
+- name: Set stats for the e-mail body and ServiceNow
+  ansible.builtin.set_stats:
+    data:
+      email_body: "{{ email_body }} Load Balancer: https://citrixlb.shadowman.dev"
+      work_notes: "{{ work_notes }} [code]<a href='https://citrixlb.shadowman.dev'>Load Balancer</a>[/code]"
+  run_once: true      
+  when: email_body is defined

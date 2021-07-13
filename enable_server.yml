@@ -5,15 +5,5 @@
   serial: 1
 
   
-  tasks:
-  
-  - name: Enable Server on LB
-    citrix.adc.citrix_adc_server:
-      nsip: "{{ nsip }}"
-      nitro_user: "{{ nitro_user }}"
-      nitro_pass: "{{ nitro_pass }}"
-      disabled: no
-      ipaddress: "{{ ip_addr }}"
-      name: "{{ inventory_hostname }}"
-      validate_certs: no
-    delegate_to: localhost
+  roles:
+    - citrix_enable

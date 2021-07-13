@@ -4,32 +4,5 @@
   gather_facts: false
   serial: 1
 
-  tasks:
-
-  - name: Remove host from load balancer service group
-    citrix.adc.citrix_adc_servicegroup:
-      nsip: "{{ nsip }}"
-      nitro_user: "{{ nitro_user }}"
-      nitro_pass: "{{ nitro_pass }}"
-      servicegroupname: service-group-https
-      maxclient: "4000"
-      servicetype: TCP
-      validate_certs: no
-      servicemembers:
-        mode: unbind
-        attributes: 
-          - servername: "{{ inventory_hostname }}"
-            port: 443
-            weight: "50"
-    delegate_to: localhost
-
-  - name: Remove server
-    citrix.adc.citrix_adc_server:
-      nsip: "{{ nsip }}"
-      nitro_user: "{{ nitro_user }}"
-      nitro_pass: "{{ nitro_pass }}"
-      state: absent
-      name: "{{ inventory_hostname }}"
-      ipaddress: "{{ ip_addr }}"
-      validate_certs: no
-    delegate_to: localhost
+  roles:
+    - citrix_remove
