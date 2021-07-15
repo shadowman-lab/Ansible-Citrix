@@ -28,8 +28,6 @@
     monitor_bindings:
       mode: exact
       attributes:
-        - monitor_name: ping
-          weight: "50"
         - monitor_name: https
           weight: "50"
   delegate_to: localhost
