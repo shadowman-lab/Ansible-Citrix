@@ -3,4 +3,3 @@ collections:
   - name: citrix.adc
 
   - name: community.general
-    source: https://towerpah.shadowman.dev/api/galaxy/content/community/
