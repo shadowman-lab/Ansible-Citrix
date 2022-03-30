@@ -7,7 +7,7 @@
     state: present
     name: "{{ inventory_hostname }}"
     ipaddress: "{{ ip_addr }}"
-    validate_certs: no
+    validate_certs: false
   delegate_to: localhost
 
 - name: Setup service group and add host
@@ -18,7 +18,7 @@
     servicegroupname: service-group-https
     maxclient: "4000"
     servicetype: TCP
-    validate_certs: no
+    validate_certs: false
     servicemembers:
       mode: bind
       attributes: 
@@ -43,7 +43,7 @@
     ipv46: 172.16.0.123
     servicegroupbindings:
       - servicegroupname: service-group-https
-    validate_certs: no
+    validate_certs: false
   delegate_to: localhost
   notify: IDM_update
 

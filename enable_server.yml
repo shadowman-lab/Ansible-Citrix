@@ -4,6 +4,5 @@
   gather_facts: false
   serial: 1
 
-  
   roles:
     - citrix_enable

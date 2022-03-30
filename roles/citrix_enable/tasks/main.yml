@@ -7,5 +7,5 @@
     disabled: no
     ipaddress: "{{ ip_addr }}"
     name: "{{ inventory_hostname }}"
-    validate_certs: no
+    validate_certs: false
   delegate_to: localhost

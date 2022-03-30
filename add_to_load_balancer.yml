@@ -3,6 +3,6 @@
   hosts: "{{ vm_name | default('all') }}"
   gather_facts: false
   serial: 1
-  
+
   roles:
     - citrix_add
