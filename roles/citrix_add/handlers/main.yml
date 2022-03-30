@@ -1,5 +1,5 @@
 ---
-- name: IDM_update      
+- name: IDM_update
   community.general.ipa_host:
     name: citrixlb.shadowman.dev
     ip_address: 172.16.0.123

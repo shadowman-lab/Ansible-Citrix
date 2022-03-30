@@ -4,7 +4,7 @@
     nsip: "{{ nsip }}"
     nitro_user: "{{ nitro_user }}"
     nitro_pass: "{{ nitro_pass }}"
-    disabled: yes
+    disabled: true
     ipaddress: "{{ ip_addr }}"
     name: "{{ inventory_hostname }}"
     validate_certs: false
