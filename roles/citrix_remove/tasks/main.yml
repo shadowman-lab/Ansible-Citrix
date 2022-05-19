@@ -1,4 +1,13 @@
 ---
+
+- name: Add in Citrix SDK
+  ansible.builtin.command:
+    cmd: git clone https://github.com/citrix/citrix-adc-ansible-modules.git /tmp/citrix
+  
+- name: Install SDK
+  ansible.builtin.command:
+    cmd: pip3 install /tmp/citrix/deps/nitro-python-1.0_kamet.tar.gz
+
 - name: Remove host from load balancer service group
   citrix.adc.citrix_adc_servicegroup:
     nsip: "{{ nsip }}"
