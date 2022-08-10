@@ -1,0 +1,11 @@
+---
+- name: Setup server
+  citrix.adc.citrix_adc_server:
+    nsip: "{{ nsip }}"
+    nitro_user: "{{ nitro_user }}"
+    nitro_pass: "{{ nitro_pass }}"
+    state: present
+    name: "{{ inventory_hostname }}"
+    ipaddress: "{{ ip_addr }}"
+    validate_certs: false
+  delegate_to: localhost
