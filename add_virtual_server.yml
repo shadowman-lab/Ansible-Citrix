@@ -1,0 +1,7 @@
+---
+- name: Add virtual server to Citrix Load Balancer
+  hosts: localhost
+  gather_facts: false
+
+  roles:
+    - citrix_add_vs
