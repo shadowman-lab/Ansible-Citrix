@@ -6,3 +6,10 @@
 
   roles:
     - citrix_add
+
+- name: Set E-mail
+  hosts: localhost
+  gather_facts: false
+
+  roles:
+    - citrix_email
