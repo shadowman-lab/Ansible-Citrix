@@ -1,6 +1,6 @@
 ---
 - name: Setup server
-  citrix.adc.citrix_adc_server:
+  netscaler.adc.server:
     nsip: "{{ nsip }}"
     nitro_user: "{{ nitro_user }}"
     nitro_pass: "{{ nitro_pass }}"
@@ -11,7 +11,7 @@
   delegate_to: localhost
 
 - name: Setup service group and add host
-  citrix.adc.citrix_adc_servicegroup:
+  netscaler.adc.servicegroup:
     nsip: "{{ nsip }}"
     nitro_user: "{{ nitro_user }}"
     nitro_pass: "{{ nitro_pass }}"
@@ -19,15 +19,16 @@
     maxclient: "4000"
     servicetype: TCP
     validate_certs: false
-    servicemembers:
+    servicegroup_servicegroupmember_binding:
       mode: bind
-      attributes:
+      binding_members:
         - servername: "{{ inventory_hostname }}"
           port: 443
           weight: "50"
-    monitor_bindings:
-      mode: exact
-      attributes:
+          servicegroupname: service-group-https
+    servicegroup_lbmonitor_binding:
+      mode: desired
+      binding_members:
         - monitor_name: https
           weight: "50"
   delegate_to: localhost

@@ -1,10 +1,10 @@
 ---
 - name: Enable Server on LB
-  citrix.adc.citrix_adc_server:
+  netscaler.adc.server:
     nsip: "{{ nsip }}"
     nitro_user: "{{ nitro_user }}"
     nitro_pass: "{{ nitro_pass }}"
-    disabled: false
+    state: enabled
     ipaddress: "{{ ip_addr }}"
     name: "{{ inventory_hostname }}"
     validate_certs: false
