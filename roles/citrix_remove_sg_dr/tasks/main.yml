@@ -1,14 +1,10 @@
 ---
 - name: Remove host from load balancer service group
-  netscaler.adc.servicegroup:
+  netscaler.adc.servicegroup_servicegroupmember_binding:
     nsip: "{{ nsip }}"
     nitro_user: "{{ nitro_user }}"
     nitro_pass: "{{ nitro_pass }}"
     servicegroupname: dr-group
-    validate_certs: false
-    servicegroup_servicegroupmember_binding:
-      mode: unbind
-      binding_members:
-        - servername: "{{ inventory_hostname }}"
-          ip:
+    servername: "{{ inventory_hostname }}"
+    state: absent
   delegate_to: localhost
