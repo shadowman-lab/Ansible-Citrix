@@ -31,4 +31,5 @@
       binding_members:
         - monitor_name: https
           weight: "50"
+          servicegroupname: dr-group
   delegate_to: localhost
