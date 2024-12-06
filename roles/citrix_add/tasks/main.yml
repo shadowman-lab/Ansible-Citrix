@@ -15,7 +15,7 @@
     nsip: "{{ nsip }}"
     nitro_user: "{{ nitro_user }}"
     nitro_pass: "{{ nitro_pass }}"
-    servicegroupname: dr-group
+    servicegroupname: service-group-https
     maxclient: "4000"
     servicetype: TCP
     validate_certs: false
@@ -25,7 +25,7 @@
         - servername: "{{ inventory_hostname }}"
           port: 443
           weight: "50"
-          servicegroupname: dr-group
+          servicegroupname: service-group-https
     servicegroup_lbmonitor_binding:
       mode: desired
       binding_members:
