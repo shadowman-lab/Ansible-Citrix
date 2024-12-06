@@ -6,6 +6,7 @@
     nitro_pass: "{{ nitro_pass }}"
     servicegroupname: dr-group
     servername: "{{ inventory_hostname }}"
+    port: 443
     state: absent
     validate_certs: false
   delegate_to: localhost
